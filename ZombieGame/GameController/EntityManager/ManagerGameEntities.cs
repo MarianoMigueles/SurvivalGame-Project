@@ -12,7 +12,7 @@ namespace ZombieGame.GameController.EntityManager
 {
     internal class ManagerGameEntities : IManagerGameEntities
     {
-        public readonly ObjectPool _objectPool;
+        public readonly ObjectPool<GameObject> _objectPool;
         private readonly Game _gameForm;
         private readonly GameTimerController _gameTimerController;
         public Player Player { get; private set; }
@@ -33,7 +33,7 @@ namespace ZombieGame.GameController.EntityManager
 
         public void ReleaseEntity(GameObject obj)
         {
-            _objectPool.ReleaseObject(obj);
+            _objectPool.ReleaseObject(obj, x => x.Reset(x));
             _gameForm.Controls.Remove(obj.PictureBox);
         }
 
@@ -46,7 +46,7 @@ namespace ZombieGame.GameController.EntityManager
         {
             bool reDraw = false;
 
-            foreach (var entity in _objectPool.InUseObjects)
+            foreach (var entity in _objectPool.InUseObjects.Values)
             {
                 if (entity.HasChanged)
                 {
@@ -64,70 +64,68 @@ namespace ZombieGame.GameController.EntityManager
 
         public void GenerateNewPlayer(string name)
         {
-            Player newPlayer = new(
-                name,
-                10,
-                0,
-                0,
-                0,
-                10,
-                new PictureBox
-                {
-                    Width = 50,
-                    Height = 50,
-                    BackColor = Color.Blue,
-                    Location = new Point(0, 0)
-                },
-                this
+            this.Player = (Player)_objectPool.GetObject(
+                () => new Player(
+                    name,
+                    10,
+                    0,
+                    0,
+                    0,
+                    10,
+                    new PictureBox
+                    {
+                        Width = 50,
+                        Height = 50,
+                        BackColor = Color.Blue,
+                        Location = new Point(0, 0)
+                    },
+                    this
+                )
             );
 
-            this.Player = _objectPool.GetObject(
-                p => newPlayer,
-                p => p.Reset(0, 0)
-            );
             AddEntity(this.Player);
         }
 
         public void GenerateNewZombie(string type)
         {
-            Zombie newZombie = new(
-                type,
-                5,
-                10,
-                5,
-                new PictureBox
-                {
-                    Width = 50,
-                    Height = 50,
-                    BackColor = Color.Green,
-                    Location = new Point(10, 10)
-                },
-                this
+            Zombie newZombie = (Zombie)_objectPool.GetObject(
+                () => new Zombie(
+                    type,
+                    5,
+                    10,
+                    5,
+                    new PictureBox
+                    {
+                        Width = 50,
+                        Height = 50,
+                        BackColor = Color.Green,
+                        Location = new Point(10, 10)
+                    },
+                    this
+                )
             );
 
-            AddEntity(
-                _objectPool.GetObject(z => newZombie,
-                z => z.Reset(0, 0)
-                ));
+            AddEntity(newZombie);
         }
 
         public Bullet GenerateNewBullet()
         {
-            Bullet newBullet = new(
-                4,
-                0,
-                5,
-                new PictureBox
-                {
-                    Width = 50,
-                    Height = 50,
-                    BackColor = Color.Yellow
-                },
-                this
+            Bullet newBullet = (Bullet)_objectPool.GetObject(
+                () => new Bullet(
+                    4,
+                    0,
+                    5,
+                    new PictureBox
+                    {
+                        Width = 50,
+                        Height = 50,
+                        BackColor = Color.Yellow
+                    },
+                    this
+                )
             );
 
-            return _objectPool.GetObject(z => newBullet,
-                z => z.Reset(0, 0));
+            return newBullet;
         }
 
     }
