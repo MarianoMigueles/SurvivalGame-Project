@@ -20,7 +20,7 @@ namespace GunExtreme.Entities
             }
             set
             {
-                int screenWidth = this.GetFormWidth();
+                int screenWidth = GetFormWidth();
                 if (value > (screenWidth - this.PictureBox.Width))
                 {
                     this.HasChanged = false;
@@ -48,7 +48,7 @@ namespace GunExtreme.Entities
             }
             set
             {
-                int screenHeight = this.GetFormHeight();
+                int screenHeight = GetFormHeight();
                 if (value > (screenHeight + this.PictureBox.Height))
                 {
                     this.HasChanged = false;
@@ -100,13 +100,10 @@ namespace GunExtreme.Entities
             }
         }
 
-        public override void Reset(int x, int y, Point? position = null)
+        protected override void OnReset()
         {
-            base.Reset(x, y, position);
-            if(position.HasValue)
-            {
-                CalculateDirection(position.Value);
-            }        
+            this.DirectionX = 0;
+            this.DirectionY = 0;
         }
 
     }

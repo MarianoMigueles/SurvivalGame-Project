@@ -40,7 +40,7 @@ namespace GunExtreme.Entities
             }
             set
             {
-                int screenWidth = this.GetFormWidth();
+                int screenWidth = GetFormWidth();
                 int halfPlayerArea = this.PictureBox.Width / 2;
 
                 if (value > (screenWidth - halfPlayerArea))
@@ -68,7 +68,7 @@ namespace GunExtreme.Entities
             }
             set
             {
-                int screenHeight = this.GetFormHeight();
+                int screenHeight = GetFormHeight();
                 int halfPlayerArea = this.PictureBox.Height / 2;
 
                 if (value > (screenHeight - halfPlayerArea))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoolClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using ZombieGame.Log;
 
 namespace GunExtreme.Entities
 {
-    internal abstract class GameObject( int velocity, PictureBox pictureBox, IManagerGameEntities entintyGenerator)
+    internal abstract class GameObject( int velocity, PictureBox pictureBox, IManagerGameEntities entintyGenerator) : IIdentificable
     {
         public int Id { get; set; }
         public abstract int PositionX { get; set; }
@@ -30,9 +31,9 @@ namespace GunExtreme.Entities
             int newX = PositionX + (int)(DirectionX * Velocity);
             int newY = PositionY + (int)(DirectionY * Velocity);
 
-            Logger.LogInfo($"{this.GetType().Name} Position Before Update: X={PositionX}, Y={PositionY}");
-            Logger.LogInfo($"{this.GetType().Name} Direction: dX={DirectionX}, dY={DirectionY}");
-            Logger.LogInfo($"{this.GetType().Name} New Position Calculated: X={newX}, Y={newY}");
+            //Logger.LogInfo($"{this.GetType().Name} Position Before Update: X={PositionX}, Y={PositionY}");
+            //Logger.LogInfo($"{this.GetType().Name} Direction: dX={DirectionX}, dY={DirectionY}");
+            //Logger.LogInfo($"{this.GetType().Name} New Position Calculated: X={newX}, Y={newY}");
 
             if (this.PictureBox.InvokeRequired)
             {
@@ -57,14 +58,26 @@ namespace GunExtreme.Entities
             _entintyManager.ReleaseEntity(this);
         }
 
-        public virtual void Reset(int x, int y, Point? position = null)
+        private int count = 10;
+
+        public virtual void Reset(GameObject obj)
         {
-            this.PositionX = x;
-            this.PositionY = y;
-            UpdatePictureBoxLocation(x, y);      
+            obj.PositionX = -10;
+            obj.PositionY = -10;
+
+            //obj.Velocity = 0;
+
+            //UpdatePictureBoxLocation(PositionX, PositionY);
+
+            OnReset();
         }
 
-        public int GetFormWidth()
+        protected virtual void OnReset()
+        {
+            
+        }
+
+        public static int GetFormWidth()
         {
             if(Form.ActiveForm != null)
             {
@@ -73,7 +86,7 @@ namespace GunExtreme.Entities
             return 800;
         }
 
-        public int GetFormHeight()
+        public static int GetFormHeight()
         {
             if (Form.ActiveForm != null)
             {

@@ -39,7 +39,7 @@ namespace GunExtreme.Entities
             }
             set
             {
-                int screenWidth = this.GetFormWidth();
+                int screenWidth = GetFormWidth();
                 if (value < 0)
                 {
                     _PositionX = 0; 
@@ -65,7 +65,7 @@ namespace GunExtreme.Entities
             }
             set
             {
-                int screenHeight = this.GetFormHeight();
+                int screenHeight = GetFormHeight();
                 if (value < 0)
                 {
                     _PositionY = 0;
