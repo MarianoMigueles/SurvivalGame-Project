@@ -4,15 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZombieGame.GameController.Managers
+/// <summary>
+/// Manages a pool of unique IDs. It generates new IDs or reuses previously released ones.
+/// </summary>
+namespace ZombieGame
 {
-    internal static class IdManager
+    internal class IdManager
     {
-        private static Queue<int> _availableIds = [];
-        private static HashSet<int> _inUseIds = [];
-        private static int _counter = 0;
+        private readonly Queue<int> _availableIds;
+        private readonly HashSet<int> _inUseIds;
+        private int _counter;
 
-        public static int GetId()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IdManager"/> class.
+        /// </summary>
+        public IdManager()
+        {
+            _availableIds = new Queue<int>();
+            _inUseIds = new HashSet<int>();
+            _counter = 0;
+        }
+
+        /// <summary>
+        /// Gets a unique ID, either by reusing a released ID or by generating a new one.
+        /// </summary>
+        /// <returns>A unique ID.</returns>
+        public int GetId()
         {
             int id;
 
@@ -30,12 +47,17 @@ namespace ZombieGame.GameController.Managers
             return id;
         }
 
-        public static void ReleaseId(int id)
+        /// <summary>
+        /// Releases an ID that is no longer in use, allowing it to be reused.
+        /// </summary>
+        /// <param name="id">The ID to release.</param>
+        /// <exception cref="Exception">Thrown when attempting to release an ID that is not in use or has already been released.</exception>
+        public void ReleaseId(int id)
         {
             if (_inUseIds.Remove(id))
             {
                 _availableIds.Enqueue(id);
-            } 
+            }
             else
             {
                 throw new Exception($"The index {id} is not in use or has already been released.");
@@ -43,3 +65,4 @@ namespace ZombieGame.GameController.Managers
         }
     }
 }
+

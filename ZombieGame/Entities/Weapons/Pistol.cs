@@ -1,14 +1,14 @@
-﻿using GunExtreme.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZombieGame.Entities.Ammunition;
 using ZombieGame.GameController.EntityManager;
 
-namespace ZombieGame.Entities
+namespace ZombieGame.Entities.Weapons
 {
-    internal class Weapon(string type, string model, int amountBullets, int fireRateDelay)
+    public class Pistol(string type, string model, int amountBullets, int fireRateDelay) : IWeapon
     {
         public string Type { get; set; } = type;
         public string Model { get; set; } = model;
