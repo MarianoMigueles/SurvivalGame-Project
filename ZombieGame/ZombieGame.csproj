@@ -11,6 +11,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Logger\Logger.csproj" />
     <ProjectReference Include="..\PoolClasses\ObjectsPoll.csproj" />
+    <ProjectReference Include="..\SpatialStructures\SpatialStructures.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>

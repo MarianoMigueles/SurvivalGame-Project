@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZombieGame
+namespace ZombieGame.GameController.EntityManager
 {
-    public interface IIdentificable
+    public interface IReleaseble
     {
-        int? Id { get; set; }
-        bool IsFromPool { get; set; }
+        public void Disappear();
     }
 }

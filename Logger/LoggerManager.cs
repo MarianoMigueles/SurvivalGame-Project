@@ -4,17 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZombieGame.Log
+/// <summary>
+/// Manages logging of messages with different log levels (INFO, WARNING, ERROR).
+/// Logs messages to a specified log file with timestamp.
+/// </summary>
+namespace Logger
 {
-    public class Logger
+    public class LoggerManager
     {
         private readonly string _logFilePath;
+        private readonly string _logFileName = @"\\Output_log.txt";
 
-        public Logger(string logFilePath)
+        public LoggerManager(string logFilePath)
         {
             _logFilePath = logFilePath;
             CreateLogFile();
         }
+
         public void LogInfo(string message)
         {
             Log("INFO", message);
@@ -30,13 +36,18 @@ namespace ZombieGame.Log
             Log("ERROR", message);
         }
 
+        /// <summary>
+        /// Writes a log message with a specified log level.
+        /// </summary>
+        /// <param name="logLevel">The log level (e.g., INFO, WARNING, ERROR).</param>
+        /// <param name="message">The message to log.</param>
         private void Log(string logLevel, string message)
         {
             string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [{logLevel}] {message}";
 
             try
             {
-                using (StreamWriter writer = new StreamWriter(_logFilePath + ".txt", true))
+                using (StreamWriter writer = new StreamWriter(_logFilePath + _logFileName, true))
                 {
                     writer.WriteLine(logMessage);
                 }
@@ -47,13 +58,16 @@ namespace ZombieGame.Log
             }
         }
 
+        /// <summary>
+        /// Creates the log file if it does not already exist.
+        /// </summary>
         private void CreateLogFile()
         {
             try
             {
-                if (!File.Exists(_logFilePath))
+                if (!File.Exists(_logFilePath + _logFileName))
                 {
-                    File.Create(_logFilePath + ".txt").Close();
+                    File.CreateText(_logFilePath + _logFileName);
                 }
             }
             catch (Exception e)

@@ -1,14 +1,17 @@
 ﻿using GunExtreme.Entities;
+using System.Numerics;
+using ZombieGame.Entities.Ammunition;
+using ZombieGame.Entities.Players;
 
 namespace ZombieGame.GameController.EntityManager
 {
-    internal interface IManagerGameEntities
+    public interface IManagerGameEntities
     {
-        public void ReleaseEntity(GameObject obj);
-        public void AddEntity(GameObject obj);
-        public void GenerateNewPlayer(string name);
-        public void GenerateNewZombie(string type);
+        public void ReleaseEntity(AbstractEntity obj);
+        public Player GenerateNewPlayer(string name);
+        public Task GenerateNewZombieAsync(string type, int x, int y);
         public Bullet GenerateNewBullet();
+        public Vector2 GetPlayerPosition();
         public Point GetMousePosition();
     }
 }
