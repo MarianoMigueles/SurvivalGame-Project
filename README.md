@@ -49,6 +49,17 @@ Zombie Cube Game is a simple game project created with the purpose of improving 
   ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
   ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 
+
+
+## 📥 Download
+[Download Zombie Cube Game](https://drive.google.com/file/d/1UA8S9czsu526yLSv6wKGML2z_I3z0tkW/view?usp=drive_link)
+
+## How to play?
+1. Download the .zip file.
+2. Extract the files.
+3. Run `ZombieGame.exe`.
+4. Have fun!
+
 ## 👨‍💻 Author
 
 Mariano Joel Migueles.
