@@ -1,6 +1,6 @@
 # Zombie Cube Game
 <div align="center">
-  <img src="https://github.com/MarianoMigueles/GitHubContent/blob/main/WheatherApp.png" width="800"  />
+  <img src="Images/Cube game.PNG" width="800"  />
 </div>
 
 ## About projects
@@ -8,14 +8,16 @@
 Zombie Cube Game is a simple game project created with the purpose of improving my understanding and skills in object-oriented programming. The game is straightforward: you play as a character with a gun and must survive endless waves of "zombies." The game has no definitive ending and is designed purely for a few minutes of fun.
 
 ### Game UI
-<img src="https://github.com/MarianoMigueles/GitHubContent/blob/main/WheatherApp%20MainScreen.png" width="500"  />
+<img src="Images/Cube game.PNG" width="500"  />
   
 ### Menu UI
-<img src="https://github.com/MarianoMigueles/GitHubContent/blob/main/WheatherApp%20Status%20UI.png" width="500"  />
+<img src="Images/Menu UI.PNG" width="500"  />
 
 ### Game Over UI
+<img src="Images/Game over UI.PNG" width="500"  />
 
-### Boundary from Areas
+### Area boundaries
+<img src="Images/Boundary UI.PNG" width="500"  />
 
 # 🚀 Game Features
 
