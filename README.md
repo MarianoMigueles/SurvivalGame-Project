@@ -52,7 +52,7 @@ Zombie Cube Game is a simple game project created with the purpose of improving 
 
 
 ## 📥 Download
-[Download Zombie Cube Game](https://drive.google.com/file/d/1UA8S9czsu526yLSv6wKGML2z_I3z0tkW/view?usp=drive_link)
+[Download Zombie Cube Game](https://marinex-21.itch.io/cube-zombie-game)
 
 ## How to play?
 1. Download the .zip file.
